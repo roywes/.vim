@@ -1,26 +1,24 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle, and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles here:
-"
-" original repos on github
-Bundle 'majutsushi/tagbar'
-Bundle 'altercation/vim-colors-solarized'
+" Other plugins start here:
 
-" Github repos of the user 'vim-scripts'
-" => can omit the username part
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Plugin 'altercation/vim-colors-solarized'
 
-" non github repos
-" ...
+" All plugins must be added before the following line
+call vundle#end()		" required
+filetype plugin indent on	" required!
 
-filetype plugin indent on     " required!
+" Non plugin stuff starts here
+
+syntax on
+set nu
 
