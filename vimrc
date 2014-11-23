@@ -55,6 +55,8 @@ set listchars=tab:▸\ ,eol:$
 
 " in the Gui, hide the toolbar and menubar
 if has('gui_running')
-    set guioptions -= m     " hide the menubar
-    set guioptions -= T     " hide the toolbar
+    set guioptions -=m     " hide the menubar
+    set guioptions -=T     " hide the toolbar
+    set background=dark
+    colorscheme solarized
 endif
