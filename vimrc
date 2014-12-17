@@ -11,17 +11,29 @@ Plugin 'gmarik/Vundle.vim'
 
 " Other plugins start here:
 
+" fugitive - git interface
+Plugin 'tpope/vim-fugitive'
+
+" YouCompleteMe: code completion engine
+Plugin 'Valloric/YouCompleteMe'
+
 " solarized colour scheme
 Plugin 'altercation/vim-colors-solarized'
 
 " Ctrl-P: buffer/file/mru/tag explorer with fuzzy text matching
 Plugin 'kien/ctrlp.vim'
 
+" syntastic - Syntax plugin
+Plugin 'scrooloose/syntastic'
+
 " Markdown syntax highlighting for vim
 Plugin 'plasticboy/vim-markdown'
 
 " NERDTree file nav plugin
 Plugin 'scrooloose/nerdtree'
+
+" Vim colorschemes
+Plugin 'flazz/vim-colorschemes'
 
 " All plugins must be added before the following line
 call vundle#end()		" required
@@ -57,6 +69,14 @@ set listchars=tab:▸\ ,eol:$
 if has('gui_running')
     set guioptions -=m     " hide the menubar
     set guioptions -=T     " hide the toolbar
+    set guioptions -=L
+    set guioptions -=l
+    set guioptions -=R
+    set guioptions -=r
     set background=dark
-    colorscheme solarized
+    colorscheme monokai
 endif
+
+" syntastic should use python 3
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_python_checkers = ['pylint']
