@@ -39,7 +39,30 @@ Plugin 'flazz/vim-colorschemes'
 call vundle#end()		" required
 filetype plugin indent on	" required!
 
+" Autoreload .vimrc on edit
 " Non plugin stuff starts here
+autocmd! bufwritepost .vimrc source %
+
+" Better copy & paste
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Rebind <leader>
+let mapleader = ","
+
+" Map Ctrl+<movement> key to navigate windows
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" easier moving of code blocks
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
 
 " size of hard tabstop
 set tabstop=4
@@ -74,9 +97,15 @@ if has('gui_running')
     set guioptions -=R
     set guioptions -=r
     set background=dark
-    colorscheme monokai
+    colorscheme monokain
 endif
 
+"" syntastic conf
 " syntastic should use python 3
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_loc_list_height=5
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 let g:syntastic_python_checkers = ['pylint']
