@@ -35,6 +35,9 @@ Plugin 'scrooloose/nerdtree'
 " Vim colorschemes
 Plugin 'flazz/vim-colorschemes'
 
+" Base16 vim themes
+Plugin 'chriskempson/base16-vim'
+
 " All plugins must be added before the following line
 call vundle#end()		" required
 filetype plugin indent on	" required!
@@ -88,6 +91,10 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:$
 
+" Open new splits panes to right and bottom
+set splitbelow
+set splitright
+
 " in the Gui, hide the toolbar and menubar
 if has('gui_running')
     set guioptions -=m     " hide the menubar
@@ -97,7 +104,7 @@ if has('gui_running')
     set guioptions -=R
     set guioptions -=r
     set background=dark
-    colorscheme monokain
+    colorscheme base16-monokai
 endif
 
 "" syntastic conf
