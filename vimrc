@@ -32,6 +32,9 @@ Plugin 'plasticboy/vim-markdown'
 " NERDTree file nav plugin
 Plugin 'scrooloose/nerdtree'
 
+" NERDTree file nav plugin
+Plugin 'scrooloose/nerdcommenter'
+
 " Vim colorschemes
 Plugin 'flazz/vim-colorschemes'
 
@@ -69,24 +72,14 @@ vnoremap <Leader>s :sort<CR>
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
+set tabstop=4       " size of hard tabstop
+set shiftwidth=4    " size of indent
+set smarttab        " make 'tab' insert indents instead of tabs at the beginning of lines
+set expandtab       " always use spaces instead of tab characters
 
-" size of hard tabstop
-set tabstop=4
 
-" size of indent
-set shiftwidth=4
-
-" make 'tab' insert indents instead of tabs at the beginning of lines
-set smarttab
-
-" always use spaces instead of tab characters
-set expandtab
-
-" turn syntax highlighting on
-syntax on
-
-" show line numbers by default
-set nu
+syntax on           " turn syntax highlighting on
+set nu              " show line numbers by default
 
 " toggle invisible characters
 nmap <leader>l :set list!<CR>
