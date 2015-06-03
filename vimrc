@@ -161,6 +161,7 @@ endif
 
 "" neocomplete configuration
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_close_preview = 1
 
 "" syntastic conf
 " syntastic should use python 3
