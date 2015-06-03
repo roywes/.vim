@@ -14,11 +14,35 @@ Plugin 'gmarik/Vundle.vim'
 " fugitive - git interface
 Plugin 'tpope/vim-fugitive'
 
-" YouCompleteMe: code completion engine
-Plugin 'Valloric/YouCompleteMe'
+" surround.vim: quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
 
-" solarized colour scheme
-Plugin 'altercation/vim-colors-solarized'
+" dispatch.vim: asynchronous build and test dispatcher
+"Plugin 'tpope/vim-dispatch'
+
+" YouCompleteMe: code completion engine
+"Plugin 'Valloric/YouCompleteMe'
+
+" neocomplete: code completion engine
+Plugin 'Shougo/neocomplete.vim'
+
+" OmniSharp:  C# IDE!!!
+"Plugin 'OmniSharp/omnisharp-vim'
+
+" qmake syntax highlighting
+Plugin 'artoj/qmake-syntax-vim'
+
+" windows powershell syntax highlighing
+Plugin 'PProvost/vim-ps1'
+
+" QML syntax highlighing
+Plugin 'crucerucalin/qml.vim'
+
+" Go integration
+Plugin 'fatih/vim-go'
+
+" Vim airline
+Plugin 'bling/vim-airline'
 
 " Ctrl-P: buffer/file/mru/tag explorer with fuzzy text matching
 Plugin 'kien/ctrlp.vim'
@@ -51,6 +75,14 @@ filetype plugin indent on	" required!
 " Autoreload .vimrc on edit
 " Non plugin stuff starts here
 autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost .vim/vimrc source %
+
+"augroup omnisharp_commands
+"    autocmd!
+"    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+"    autocmd BufEnter, TextChanged, InsertLeave *cs SytnasticCheck
+"    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+"augroup END
 
 " Better copy & paste
 set pastetoggle=<F2>
@@ -59,18 +91,35 @@ set clipboard=unnamed
 " Rebind <leader>
 let mapleader = ","
 
+" Disable arrow keys. HardCore !!!
+nmap <up> <Nop>
+nmap <left> <Nop>
+nmap <right> <Nop>
+nmap <down> <Nop>
+imap <up> <Nop>
+imap <left> <Nop>
+imap <right> <Nop>
+imap <down> <Nop>
+vmap <up> <Nop>
+vmap <left> <Nop>
+vmap <right> <Nop>
+vmap <down> <Nop>
+
 " Map Ctrl+<movement> key to navigate windows
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" Nerdtree toggle
+nmap <Leader>n :NERDTreeToggle<CR>
+
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
 " easier moving of code blocks
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
+vnoremap < <gv
+vnoremap > >gv
 
 set tabstop=4       " size of hard tabstop
 set shiftwidth=4    " size of indent
@@ -80,12 +129,18 @@ set expandtab       " always use spaces instead of tab characters
 
 syntax on           " turn syntax highlighting on
 set nu              " show line numbers by default
+set laststatus=2    " always display the statusline
 
 " toggle invisible characters
 nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:$
+
+" statusline settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " Open new splits panes to right and bottom
 set splitbelow
@@ -100,33 +155,33 @@ if has('gui_running')
     set guioptions -=R
     set guioptions -=r
     set background=dark
+    set guifont=Ubuntu\ Mono\ Regular\ 13
     colorscheme base16-monokai
 endif
 
+"" neocomplete configuration
+let g:neocomplete#enable_at_startup = 1
+
 "" syntastic conf
 " syntastic should use python 3
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_loc_list_height=5
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_cs_checkers = ['code_checker']
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
 
-"" Vala Support
-" Disable valadoc syntax highlight
-"let vala_ignore_valadoc = 1
+"" vim-go conf
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
-" Enable comment strings
-let vala_comment_strings = 1
+" OmniSharp configuration
+let g:OmniSharp_server_type = 'roslyn'
 
-" Highlight space errors
-let vala_space_errors = 1
-
-" Disable trailing space errors
-"let vala_no_trail_space_error = 1
-" Disable space-tab-space errors
-"let vala_no_tab_space_error = 1
-
-" Minimum lines used for comment syncing (default 50)
-"let vala_minlines = 120
+noremap <leader>a :up<cr>:silent !autopep8 --ignore E501 E128 E300 -i %<cr>:e!<cr>:redraw!<cr>
+noremap <leader>b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
