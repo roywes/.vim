@@ -172,6 +172,7 @@ let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_cs_checkers = ['code_checker']
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_python_pylint_post_args='-d C0103,C0111'
 
 "" vim-go conf
 let g:go_highlight_functions = 1
