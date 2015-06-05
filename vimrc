@@ -146,6 +146,51 @@ set statusline+=%*
 set splitbelow
 set splitright
 
+" Save backups to a less annoying location rather than the current directory.
+" If .vim-backup exists in the current directory, backups are saved there.
+" Otherwise, they are saved to ~/.vim/backup or . if all else fails.
+" see: http://stackoverflow.com/a/9528322
+if isdirectory($HOME . '/.vim/backup') == 0
+    :silent !mkdir -p ~/.vim/backup > /dev/null 2>&1
+endif
+set backupdir-=.
+set backupdir+=.
+set backupdir-=~/
+set backupdir^=~/.vim/backup/
+set backupdir^=./.vim-backup/
+set backup
+
+" Save swp to a less annoying location rather than the current directory.
+" If .vim-swp exists in the current directory, they are saved there.
+" Otherwise, they are saved to ~/.vim/swap, ~/tmp or .
+" see: http://stackoverflow.com/a/9528322
+if isdirectory($HOME . '/.vim/swap') == 0
+    :silent !mkdir -p ~/.vim/swap > /dev/null 2>&1
+endif
+set directory=./.vim-swap//
+set directory+=~/.vim/swap//
+set directory+=~/tmp//
+set directory+=.
+
+" viminfo stores the state of the previous editing session
+set viminfo+=n~/.vim/viminfo 
+
+
+if exists("+undofile")
+    " undofile - allows you to use undos after exiting and restarting
+    " Like swap and backup files above, save first to .vim-undo, then
+    " ~/.vim/undo
+    " :help undo-presistence
+    " see: http://stackoverflow.com/a/9528322
+    if isdirectory($HOME . '/.vim/undo') == 0
+        :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+    endif
+    set undodir=./.vim-undo//
+    set undodir+=~/.vim/undo//
+    set undofile
+endif
+
+
 " in the Gui, hide the toolbar and menubar
 if has('gui_running')
     set guioptions -=m     " hide the menubar
@@ -173,6 +218,8 @@ let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_cs_checkers = ['code_checker']
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_style_error_symbol = "✗✗"
+let g:syntastic_style_warning_symbol = "⚠⚠"
 let g:syntastic_python_pylint_post_args='-d C0103,C0111'
 
 "" vim-go conf
