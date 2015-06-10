@@ -232,5 +232,7 @@ let g:go_highlight_build_constraints = 1
 " OmniSharp configuration
 let g:OmniSharp_server_type = 'roslyn'
 
+" Ctrl-P configuration
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 noremap <leader>a :up<cr>:silent !autopep8 --ignore E501 E128 E300 -i %<cr>:e!<cr>:redraw!<cr>
 noremap <leader>b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
