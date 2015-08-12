@@ -29,6 +29,9 @@ Plugin 'Shougo/neocomplete.vim'
 " OmniSharp:  C# IDE!!!
 "Plugin 'OmniSharp/omnisharp-vim'
 
+" enhanced pythons syntax highlighting
+Plugin 'hdima/python-syntax'
+
 " qmake syntax highlighting
 Plugin 'artoj/qmake-syntax-vim'
 
@@ -37,6 +40,9 @@ Plugin 'PProvost/vim-ps1'
 
 " QML syntax highlighing
 Plugin 'crucerucalin/qml.vim'
+
+" TOML syntax
+Plugin 'cespare/vim-toml'
 
 " Go integration
 Plugin 'fatih/vim-go'
@@ -236,3 +242,5 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 noremap <leader>a :up<cr>:silent !autopep8 --ignore E501 E128 E300 -i %<cr>:e!<cr>:redraw!<cr>
 noremap <leader>b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
+
+let python_highlight_all = 1
