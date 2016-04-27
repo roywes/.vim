@@ -14,6 +14,9 @@ Plugin 'gmarik/Vundle.vim'
 " fugitive - git interface
 Plugin 'tpope/vim-fugitive'
 
+" fugitive - git interface
+Plugin 'tpope/vim-unimpaired'
+
 " surround.vim: quoting/parenthesizing made simple
 Plugin 'tpope/vim-surround'
 
@@ -74,6 +77,12 @@ Plugin 'chriskempson/base16-vim'
 " emmet for vim
 Plugin 'mattn/emmet-vim'
 
+" ag for vim
+Plugin 'rking/ag.vim'
+
+" ag anything
+Plugin 'chun-yang/vim-action-ag'
+
 " All plugins must be added before the following line
 call vundle#end()		" required
 filetype plugin indent on	" required!
@@ -110,6 +119,10 @@ vmap <up> <Nop>
 vmap <left> <Nop>
 vmap <right> <Nop>
 vmap <down> <Nop>
+
+" Smash escape
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Map Ctrl+<movement> key to navigate windows
 map <c-j> <c-w>j
@@ -244,3 +257,10 @@ noremap <leader>a :up<cr>:silent !autopep8 --ignore E501 E128 E300 -i %<cr>:e!<c
 noremap <leader>b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
 
 let python_highlight_all = 1
+
+" ag shortcuts
+" use * to search current word in normal mode
+nmap * <Plug>AgActionWord
+
+" use * to search selected text in visual mode
+vmap * <Plug>AgActionVisual
