@@ -21,7 +21,13 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-surround'
 
 " dispatch.vim: asynchronous build and test dispatcher
-"Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-dispatch'
+
+" fast operations on dates
+Plugin 'tpope/vim-speeddating'
+
+" Awesome python completion
+Plugin 'davidhalter/jedi-vim'
 
 " YouCompleteMe: code completion engine
 "Plugin 'Valloric/YouCompleteMe'
@@ -82,6 +88,15 @@ Plugin 'rking/ag.vim'
 
 " ag anything
 Plugin 'chun-yang/vim-action-ag'
+
+" Org-Mode! for ViM!!
+Plugin 'jceb/vim-orgmode'
+
+" Tables everywhere
+Plugin 'dhruvasagar/vim-table-mode'
+
+" Faster folding in insert mode
+Plugin 'Konfekt/FastFold'
 
 " All plugins must be added before the following line
 call vundle#end()		" required
@@ -230,15 +245,15 @@ let g:neocomplete#enable_auto_close_preview = 1
 "" syntastic conf
 " syntastic should use python 3
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_cs_checkers = ['code_checker']
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_style_error_symbol = "✗✗"
-let g:syntastic_style_warning_symbol = "⚠⚠"
+let g:syntastic_error_symbol = "🕱"
+let g:syntastic_warning_symbol = "☢"
+let g:syntastic_style_error_symbol = "🏴"
+let g:syntastic_style_warning_symbol = "🏲"
 let g:syntastic_python_pylint_post_args='-d C0103,C0111'
 
 "" vim-go conf
@@ -254,7 +269,7 @@ let g:OmniSharp_server_type = 'roslyn'
 " Ctrl-P configuration
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 noremap <leader>a :up<cr>:silent !autopep8 --ignore E501 E128 E300 -i %<cr>:e!<cr>:redraw!<cr>
-noremap <leader>b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
+noremap <leader>b :up<cr>:silent !yapf -i %<cr>:e!<cr>:redraw!<cr>
 
 let python_highlight_all = 1
 
